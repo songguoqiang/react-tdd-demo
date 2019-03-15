@@ -19,11 +19,24 @@ export default class Comments extends Component {
       .catch(console.error);
   }
 
+  addComment = comment => {
+    axios
+      .post("/api/comments", { comment })
+      .then(response => response.data)
+      .then(newComment => {
+        this.setState(prevState => ({
+          comments: prevState.comments.concat(newComment)
+        }));
+      })
+      // eslint-disable-next-line no-console
+      .catch(console.error);
+  };
+
   render() {
     const { comments } = this.state;
     return (
       <div>
-        <CommentForm />
+        <CommentForm addComment={this.addComment} />
 
         {comments && comments.length ? (
           <CommentList comments={comments} />

@@ -44,4 +44,39 @@ describe("Comments Screen", () => {
     expect(secondCommentNode).toBeDefined();
     expect(secondAuthorTagNode).toBeDefined();
   });
+
+  test("When a new comment is submitted, it submits the comment to back end, then renders in the comment list and clears out form upon submission", async () => {
+    // Arrange
+    const newComment = {
+      id: 3,
+      comment: "Brave new world of testing",
+      author: "Spongebob"
+    };
+
+    mockAxios.onGet("/api/comments").reply(200, comments);
+    mockAxios.onPost("/api/comments").reply(200, newComment);
+
+    // Act
+    const { getByLabelText, getByPlaceholderText, getByText } = render(
+      <Comments />
+    );
+    await wait(() => getByText(comment1.comment));
+
+    const submitButton = getByText("Add Comment");
+    const commentTextfieldNode = getByPlaceholderText("Write something...");
+    const nameFieldNode = getByLabelText("Your Name");
+
+    fireEvent.change(commentTextfieldNode, {
+      target: { value: newComment.comment }
+    });
+
+    fireEvent.change(nameFieldNode, { target: { value: newComment.author } });
+    fireEvent.click(submitButton);
+
+    await wait(() => getByText(`- ${newComment.author}`));
+
+    // Assert
+    expect(commentTextfieldNode.value).toEqual("");
+    expect(nameFieldNode.value).toEqual("");
+  });
 });
