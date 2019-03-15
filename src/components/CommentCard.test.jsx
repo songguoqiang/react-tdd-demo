@@ -16,4 +16,12 @@ describe("Comment Card", () => {
     const commentNode = getByText(props.comment);
     expect(commentNode).toBeDefined();
   });
+  test("should render the author", () => {
+    // Act
+    const { getByText } = render(<CommentCard {...props} />);
+
+    // Assert
+    const authorNode = getByText("- " + props.author);
+    expect(authorNode).toBeDefined();
+  });
 });
