@@ -12,7 +12,7 @@ function CommentCard({ comment, author }) {
 
 CommentCard.propTypes = {
   comment: PropTypes.string.isRequired,
-  author: PropTypes.string
+  author: PropTypes.string.isRequired
 };
 
 export default CommentCard;

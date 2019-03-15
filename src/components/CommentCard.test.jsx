@@ -64,3 +64,15 @@ describe("Comment Card", () => {
     );
   });
 });
+
+test("author props is required", () => {
+  // Arrange
+  const propsWithoutAuthor = {
+    comment: "React Testing Library is great"
+  };
+
+  // Act
+  expectPropTypeCheckToFail(() =>
+    render(<CommentCard {...propsWithoutAuthor} />)
+  );
+});
