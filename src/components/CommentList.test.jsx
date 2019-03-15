@@ -43,4 +43,13 @@ describe("Comment List", () => {
     // Act, Assert
     expectPropTypeCheckToFail(() => render(<CommentList {...props} />));
   });
+
+  test("the comments prop is required", () => {
+    // Arrange
+    const props = {
+    };
+
+    // Act, Assert
+    expectPropTypeCheckToFail(() => render(<CommentList {...props} />));
+  });
 });
