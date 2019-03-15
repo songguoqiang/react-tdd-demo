@@ -20,11 +20,24 @@ class CommentForm extends Component {
       [name]: value
     }));
 
+  handleOnSubmit = event => {
+    event.preventDefault();
+    const newComment = this.state;
+    this.createComment(newComment);
+  };
+
+  createComment = newComment => {
+    this.props.addComment(newComment);
+    this.clearForm();
+  };
+
+  clearForm = () => this.setState(_prevState => this.initialState);
+
   render() {
     const { comment, author } = this.state;
     const isDisabled = this.hasInvalidFields() ? true : null;
     return (
-      <form data-testid="comment-form">
+      <form onSubmit={this.handleOnSubmit} data-testid="comment-form">
         <div>
           <textarea
             placeholder="Write something..."

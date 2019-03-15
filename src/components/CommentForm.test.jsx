@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "react-testing-library";
+import { render, fireEvent, wait } from "react-testing-library";
 import CommentForm from "./CommentForm";
 
 describe("Comment Form", () => {
@@ -41,6 +41,29 @@ describe("Comment Form", () => {
 
     const submitButton = dom.getByText("Add Comment");
     expect(submitButton).not.toBeDisabled();
+  });
+
+  test("when user hits submit button, the comment is passed to the addComment callback, and the form is reset", async () => {
+    // Arrange
+    const newComment = {
+      comment: "Never put off until tomorrow what can be done today.",
+      author: "Sensei Wu"
+    };
+
+    const addComment = jest.fn();
+
+    // Act
+    const dom = render(<CommentForm addComment={addComment} />);
+    fillComment(dom, newComment);
+
+    const submitButton = dom.getByText("Add Comment");
+    fireEvent.click(submitButton);
+
+    // Assert
+    await wait(() => {
+      expect(addComment).toHaveBeenCalledWith(newComment);
+    });
+    checkTheFormIsEmpty();
   });
 });
 
