@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-testing-library";
 import CommentCard from "./CommentCard";
+import { expectPropTypeCheckToFail } from "../testHelper";
 
 describe("Comment Card", () => {
   const props = {
@@ -23,5 +24,18 @@ describe("Comment Card", () => {
     // Assert
     const authorNode = getByText("- " + props.author);
     expect(authorNode).toBeDefined();
+  });
+
+  test("comment prop should be a string", () => {
+    // Arrange
+    const propsWithWrongCommentType = {
+      comment: true,
+      author: "Luke Ghenco"
+    };
+
+    // Act
+    expectPropTypeCheckToFail(() =>
+      render(<CommentCard {...propsWithWrongCommentType} />)
+    );
   });
 });
