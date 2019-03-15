@@ -1,5 +1,6 @@
 import React from "react";
 import CommentCard from "./CommentCard";
+import PropTypes from "prop-types";
 
 const CommentList = ({ comments }) => (
   <div>
@@ -8,5 +9,9 @@ const CommentList = ({ comments }) => (
     ))}
   </div>
 );
+
+CommentList.propTypes = {
+  comments: PropTypes.array
+};
 
 export default CommentList;
