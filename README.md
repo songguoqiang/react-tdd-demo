@@ -35,7 +35,7 @@ You need to update the version of 'eslint' in devDependencies section accordingl
 
 ## Workshop Instructions
 
-This workshop is inspired by this [blog post]((https://medium.com/flatiron-labs/creating-readable-tests-using-react-testing-library-2bd03c49c284)) which shows how to develop a React application with TDD approach.
+This workshop is inspired by this [blog post](https://medium.com/flatiron-labs/creating-readable-tests-using-react-testing-library-2bd03c49c284) which shows how to develop a React application with TDD approach.
 
 I roughly followed the same steps in the blog post, and refined a bit based on my taste. I also added story book to help styling the components.
 
