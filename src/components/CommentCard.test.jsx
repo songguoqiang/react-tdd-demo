@@ -50,4 +50,17 @@ describe("Comment Card", () => {
       render(<CommentCard {...propsWithoutComment} />)
     );
   });
+
+  test("author prop should be string", () => {
+    // Arrange
+    const propsWithWrongAuthorType = {
+      comment: "React Testing Library is great",
+      author: true
+    };
+
+    // Act
+    expectPropTypeCheckToFail(() =>
+      render(<CommentCard {...propsWithWrongAuthorType} />)
+    );
+  });
 });
