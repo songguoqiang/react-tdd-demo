@@ -15,6 +15,11 @@ class CommentForm extends Component {
     return true;
   };
 
+  handleOnChange = ({ target: { name, value } }) =>
+    this.setState(_prevState => ({
+      [name]: value
+    }));
+
   render() {
     const { comment, author } = this.state;
     const isDisabled = this.hasInvalidFields() ? true : null;
@@ -25,7 +30,7 @@ class CommentForm extends Component {
             placeholder="Write something..."
             name="comment"
             value={comment}
-            readOnly={true}
+            onChange={this.handleOnChange}
           />
         </div>
         <div>
@@ -37,7 +42,7 @@ class CommentForm extends Component {
             type="text"
             name="author"
             value={author}
-            readOnly={true}
+            onChange={this.handleOnChange}
           />
         </div>
         <button disabled={isDisabled}>Add Comment</button>
