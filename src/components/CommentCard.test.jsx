@@ -38,4 +38,16 @@ describe("Comment Card", () => {
       render(<CommentCard {...propsWithWrongCommentType} />)
     );
   });
+
+  test("comment prop is required", () => {
+    // Arrange
+    const propsWithoutComment = {
+      author: "Luke Ghenco"
+    };
+
+    // Act
+    expectPropTypeCheckToFail(() =>
+      render(<CommentCard {...propsWithoutComment} />)
+    );
+  });
 });
