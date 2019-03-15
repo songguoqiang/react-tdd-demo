@@ -1,0 +1,66 @@
+{
+  "name": "react-tdd-starter",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "npm-run-all --parallel --silent test:unit test:cypress",
+    "test:unit": "cross-env CI=true npm run test:unit:watch",
+    "test:unit:watch": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:cypress:dev": "npm-run-all --parallel --race start 'cy:open -- --config baseUrl=http://localhost:3000'",
+    "test:cypress": "npm run build && npm run cy:start-server-and-test",
+    "cy:start-server-and-test": "npx start-server-and-test serve :5000 cy:run",
+    "serve": "npx serve --no-clipboard --single --listen 5000 build"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@storybook/addon-actions": "^5.0.1",
+    "@storybook/addon-links": "^5.0.1",
+    "@storybook/addons": "^5.0.1",
+    "@storybook/react": "^5.0.1",
+    "@types/jest": "^24.0.11",
+    "axios-mock-adapter": "^1.16.0",
+    "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
+    "cypress": "^3.1.5",
+    "cypress-testing-library": "^2.3.6",
+    "eslint": "5.12.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-jest": "^22.3.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest-dom": "^3.1.2",
+    "jest-prop-type-error": "^1.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.4",
+    "react-testing-library": "^6.0.0",
+    "serve": "^10.1.2",
+    "start-server-and-test": "^1.7.11"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/*.stories.jsx",
+      "!<rootDir>/node_modules/"
+    ]
+  }
+}
