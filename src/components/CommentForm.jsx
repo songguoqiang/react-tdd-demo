@@ -1,5 +1,30 @@
 import React, { Component } from "react";
 
+const styles = {
+  form: {
+    margin: "auto",
+    padding: "0px",
+    width: "500px"
+  },
+  commentBox: {
+    width: "494px",
+    height: "80px",
+    marginBottom: "12px"
+  },
+  inputField: {
+    width: "360px",
+    float: "right"
+  },
+  button: {
+    marginTop: "12px",
+    width: "500px",
+    color: "#ffffff",
+    backgroundColor: "#767676",
+    padding: "6px",
+    borderRadius: "8px"
+  }
+};
+
 class CommentForm extends Component {
   initialState = {
     comment: "",
@@ -37,13 +62,18 @@ class CommentForm extends Component {
     const { comment, author } = this.state;
     const isDisabled = this.hasInvalidFields() ? true : null;
     return (
-      <form onSubmit={this.handleOnSubmit} data-testid="comment-form">
+      <form
+        onSubmit={this.handleOnSubmit}
+        style={styles.form}
+        data-testid="comment-form"
+      >
         <div>
           <textarea
             placeholder="Write something..."
             name="comment"
             value={comment}
             onChange={this.handleOnChange}
+            style={styles.commentBox}
           />
         </div>
         <div>
@@ -56,9 +86,12 @@ class CommentForm extends Component {
             name="author"
             value={author}
             onChange={this.handleOnChange}
+            style={styles.inputField}
           />
         </div>
-        <button disabled={isDisabled}>Add Comment</button>
+        <button disabled={isDisabled} style={styles.button}>
+          Add Comment
+        </button>
       </form>
     );
   }
